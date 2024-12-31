@@ -80,9 +80,9 @@ En sistemas tipo Unix/Linux, puedes usar **cron** para ejecutar el script autom�
    ```
 3. Agrega una línea con la **ruta completa** de tu script `send.js`. Ejemplo:
    ```cron
-   0 0 31 12 * /usr/bin/node /ruta/completa/a/tu/proyecto/send.js
+   0 0 1 1 * /usr/bin/node /ruta/completa/a/tu/proyecto/send.js
    ```
-   - Se ejecutará a las **00:00** del **31 de diciembre**. Ajusta según tus necesidades.
+   - Se ejecutará a las **00:00** del **01 de enero**. Ajusta según tus necesidades.
 4. Guarda los cambios. Cuando llegue la fecha/hora configurada, cron ejecutará el script sin pedirte el QR de nuevo (la sesión sigue activa).
 
 ---
