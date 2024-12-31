@@ -32,19 +32,31 @@ client.on('ready', async () => {
         },
     ]
 
-    // Formato para id de chat de WhatsApp (c.us para usuarios)
-    
+    const targetDate = new Date(2024, 11, 31, 23, 59, 55);
 
-    // Enviar el mensaje
-    messages.forEach(async m => {
-        try {
-            const chatId = m.phone + '@c.us';
-            const sentMessage = await client.sendMessage(chatId, m.message);
-            console.log('Mensaje enviado:', sentMessage.id.id);
-        } catch (error) {
-            console.error('Error al enviar mensaje:', error);
-        }
-    })
+    // Fecha y hora actuales
+    const now = new Date();
+    
+    // Validamos que la hora sea superior a las 11:59:55 segundos del 31 de diciembre de 2024
+    // Para evitar enviar los mensajes involuntariamente
+    if (now > targetDate) {
+        // Enviar el mensaje
+        messages.forEach(async m => {
+            try {
+                const chatId = m.phone + '@c.us';
+                const sentMessage = await client.sendMessage(chatId, m.message);
+                console.log('Mensaje enviado:', sentMessage.id.id);
+            } catch (error) {
+                console.error('Error al enviar mensaje:', error);
+            }
+        })
+    } else {
+        console.log('Aún no hemos llegado al 31/12/2024 23:59:55');
+    }
+
+    setTimeout(() => {
+        process.exit(0);
+    }, 10000)
 });
 
 // Iniciar el cliente
